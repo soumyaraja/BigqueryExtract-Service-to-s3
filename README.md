@@ -6,7 +6,7 @@ Extract gcp bigquery data to aws s3 by providing sql query in gcp pub/sub.
 * Pub/sub triggers cloud fn
 * cloud fn gets authticated and call data-flow rest api
 * cloud fn extract data from big query
-* compress and write data based on underline shard design in aws S3
+* compress and write data to csv files based on underline shard design in aws S3
 
 # pre-requisite
 * create a service account and providies required access to push data to gcp pub sub
@@ -15,7 +15,7 @@ Extract gcp bigquery data to aws s3 by providing sql query in gcp pub/sub.
 Deploy nodejs code in cloud function and provides required access to fetch data from gcp big query
 to compile dataflow
 mvn compile exec:java \
--Dexec.mainClass=com.harland.example.batch.BigQueryImportPipeline \
+-Dexec.mainClass=com.org.bigquery.s3.dataflow.pipeline.BigQueryToCsv \
 -Dexec.args="--project=<GCP PROJECT ID> \
 --bucketUrl=s3://<S3 BUCKET NAME> \
 --awsRegion=eu-west-1 \
