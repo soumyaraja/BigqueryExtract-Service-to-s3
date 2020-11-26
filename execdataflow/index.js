@@ -1,7 +1,5 @@
-const google = require('googleapis');
 const projectId = "project name";
 const TEMPLATE_PATH = "dataflow template JSONPath";
-const JOB_NAME = "job name of the data flow";
 const dateFormat = require('dateformat');
 const now = new Date();
 const dirName = dateFormat(now, 'isoDateTime');
@@ -41,14 +39,14 @@ console.log(res[1]);
      console.log(`dataflow api call initiated`);
 
      dataflow.projects.locations.templates.create({
-       projectId: 'comm-forecastservice-uat',
+       projectId: projectId,
        location: 'europe-west1',
 
        resource: {
           parameters: {
-               // extractQuery: Buffer.from(pubsubMessage, 'base64').toString(),
+               
                   extractQuery: res[0],
-                //outPut: 'gs://comm-forecastservice-dev-poc/'+dirName+'/output'
+                
                   outPut:  res[1]+'out'
 
             },
@@ -56,7 +54,7 @@ console.log(res[1]);
             "zone": 'europe-west1-b'
         },
             jobName: 'extract-' +Math.floor(100000 + Math.random() * 900000).toString(),
-            gcsPath: 'gs://comm-forecastservice-sit/extractTemp/GCSdataflow_extraction.json'
+            
         }
      }, function(err, response) {
        if (err) {
