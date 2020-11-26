@@ -14,7 +14,8 @@ Extract gcp bigquery data to aws s3 by providing sql query in gcp pub/sub.
 # compilation
 Deploy nodejs code in cloud function and provides required access to fetch data from gcp big query
 to compile dataflow
-mvn compile exec:java \
+*
+ mvn compile exec:java \
 -Dexec.mainClass=com.org.bigquery.s3.dataflow.pipeline.BigQueryToCsv \
 -Dexec.args="--project=<GCP PROJECT ID> \
 --bucketUrl=s3://<S3 BUCKET NAME> \
